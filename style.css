@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(135deg, #f8c8dc, #d6a0f0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* Countdown */
+#countdown-container { text-align: center; color: #fff; position: relative; }
+#countdown-title { font-size: 2.5em; margin-bottom: 20px; letter-spacing: 1px; }
+#countdown { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.time-box { 
+    background: rgba(255,255,255,0.2); 
+    padding: 25px; 
+    border-radius: 15px; 
+    width: 110px; 
+    transition: transform 0.3s, background 0.5s; 
+    backdrop-filter: blur(6px);
+}
+.time-box:hover { transform: scale(1.1); }
+.time-box span { font-size: 2.2em; font-weight: bold; }
+.label { margin-top: 5px; font-size: 1em; }
+
+.hidden { display: none; }
+
+/* Birthday Message */
+#birthday-message { text-align: center; position: relative; }
+#birthday-message.blur-background { filter: blur(3px); }
+#birthday-text { 
+    font-size: 4em; 
+    color: #ff1493; 
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.2); 
+    letter-spacing: 3px;
+    animation: glowText 1.5s ease-in-out infinite alternate;
+}
+@keyframes glowText {
+    0% { text-shadow: 2px 2px 10px rgba(255,20,147,0.5); color:#ff69b4; }
+    100% { text-shadow: 2px 2px 20px rgba(255,20,147,1); color:#ff1493; }
+}
+
+/* Decorations */
+#decorations-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.balloon, .star, .ribbon { position: absolute; opacity: 0.9; }
+.balloon { width: 20px; height: 30px; border-radius: 50%; animation: floatUp linear infinite; }
+.balloon.red { background: #ff7f9e; }
+.balloon.blue { background: #7fbfff; }
+.balloon.yellow { background: #ffeb7f; }
+@keyframes floatUp { 0% { transform: translateY(200px) rotate(0deg); opacity:1; } 100% { transform: translateY(-50px) rotate(360deg); opacity:0; } }
+
+.star { width:10px; height:10px; background: #fffacd; clip-path: polygon(50% 0%,61% 38%,100% 38%,69% 59%,80% 100%,50% 75%,20% 100%,31% 59%,0 38%,39% 38%); animation: drift 4s linear infinite; }
+@keyframes drift { 0% { transform: translateY(200px) rotate(0deg); opacity:1; } 100% { transform: translateY(-50px) rotate(360deg); opacity:0; } }
+
+/* Confetti */
+#confetti-container { position: absolute; top:-50px; left:0; width:100%; height:100%; pointer-events: none; }
+.confetti { position: absolute; width: 8px; height: 8px; border-radius: 50%; opacity: 0.8; top: 0; animation: fall 2s linear forwards; }
+@keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity:1; } 100% { transform: translateY(200px) rotate(360deg); opacity:0; } }
+
+/* Buttons */
+#message-button, #click-button {
+    padding: 15px 25px; font-size: 1.3em; border-radius: 40px; border: none;
+    background: #ff69b4; color: white; cursor: pointer; margin:5px; transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+#message-button:hover, #click-button:hover { 
+    background: #ff1493; transform: scale(1.05); 
+    box-shadow: 0 0 15px rgba(255,20,147,0.6);
+}
+#message-button:active, #click-button:active { background: #c71585; transform: scale(0.95); }
+#click-button { animation: bounceButton 2s infinite alternate; }
+@keyframes bounceButton { 0% { transform: translateY(0); } 100% { transform: translateY(-5px); } }
+
+/* Message Card */
+#message-card, #click-card {
+    position: fixed; top:50%; left:50%;
+    transform: translate(-50%, -50%) rotateY(-90deg);
+    padding: 40px; border-radius: 20px; width: 360px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); opacity:0; transition: 0.8s; z-index:10;
+}
+#message-card { background: #ffccd5; }
+#click-card { background: #ffc0cb; }
+
+#message-card.show, #click-card.show { transform: translate(-50%, -50%) rotateY(0deg); opacity:1; }
+
+#hearts-container, #click-hearts-container {
+    position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; 
+    box-shadow: 0 0 30px rgba(255,192,203,0.2) inset;
+}
+.heart { position: absolute; width: 12px; height: 12px; background: #ff99cc; transform: rotate(45deg); animation: floatHeart linear infinite; }
+.heart::before, .heart::after { content:''; position:absolute; width:12px; height:12px; background:#ff99cc; border-radius:50%; }
+.heart::before { top:-6px; left:0; }
+.heart::after { left:-6px; top:0; }
+@keyframes floatHeart { 0% { transform: translateY(100%) rotate(45deg); opacity:1; } 100% { transform: translateY(-20%) rotate(45deg); opacity:0; } }
+
+#close-card, #close-click-card { position:absolute; top:10px; right:12px; background:transparent; border:none; font-size:1.2em; cursor:pointer; }
