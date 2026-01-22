@@ -19,7 +19,7 @@ const decorationsContainer = document.getElementById('decorations-container');
 const heartsContainer = document.getElementById('hearts-container');
 const birthdayText = document.getElementById('birthday-text');
 
-const targetDate = new Date("2026-01-22T14:45:45").getTime();
+const targetDate = new Date("2026-01-23T00:00:00").getTime();
 
 /* Countdown */
 const countdownInterval = setInterval(() => {
@@ -214,5 +214,6 @@ function createHeartsClick(){
 }
 // call hearts for click card when opened
 clickButton.addEventListener('click', ()=> createHeartsClick());
+
 
 
